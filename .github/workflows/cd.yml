@@ -95,7 +95,7 @@ jobs:
         echo "Testando health endpoints no pod $POD_NAME..."
 
         kubectl exec $POD_NAME -n ${{ env.K8S_NAMESPACE }} -- \
-          curl -sf http://localhost:8081/actuator/health || exit 1
+          curl -sf http://localhost:8080/actuator/health || exit 1
         echo "Health check OK"
 
     - name: Verificar LoadBalancer
