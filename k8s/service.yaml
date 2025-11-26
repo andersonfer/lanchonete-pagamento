@@ -1,4 +1,4 @@
-# Service ClusterIP para Pagamento (uso via ALB Ingress)
+# Service LoadBalancer para Pagamento
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,11 +7,11 @@ metadata:
     app: pagamento
     component: service
 spec:
-  type: ClusterIP                # Tipo LoadBalancer para acesso externo direto
+  type: LoadBalancer
   selector:
-    app: pagamento                  # Conecta com Pods que têm label app=pagamento
+    app: pagamento
   ports:
     - name: http
-      port: 8080                      # Porta interna do Service
-      targetPort: 8080                # Porta do container
+      port: 80
+      targetPort: 8080
       protocol: TCP
