@@ -27,13 +27,14 @@ spec:
             - configMapRef:
                 name: pagamento-config
 
-          # Variáveis de ambiente do MongoDB via Secret
+          # Variáveis de ambiente via Secret
           env:
-            - name: MONGO_PASSWORD
+            # SPRING_DATA_MONGODB_URI sobrescreve spring.data.mongodb.uri do application.yml
+            - name: SPRING_DATA_MONGODB_URI
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-secret
-                  key: MONGO_INITDB_ROOT_PASSWORD
+                  name: mongodb-atlas-secret
+                  key: MONGO_URI
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
